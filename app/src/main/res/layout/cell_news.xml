@@ -24,10 +24,12 @@
 
         <TextView
             android:id="@+id/tvNewsHeading"
-            style="@style/Text.Primary"
+            style="@style/Text.Primary.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
+            android:textSize="@dimen/font_large"
+            android:transitionName="@string/title_transition_name"
             app:layout_constraintEnd_toStartOf="@id/ivNewsImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNewsTime"
@@ -38,6 +40,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/image"
+            android:transitionName="@string/image_transition_name"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -9,6 +9,14 @@
     <string name="image">Image</string>
     <string name="retry">RETRY</string>
 
+
+    <string name="swipe_left_for_more">Swipe left to know more about this story-->></string>
+    <string name="some_error_occurred">Some Error Occurred</string>
+
+    <!-- Transition Names -->
+    <string name="image_transition_name">ImageTransition</string>
+    <string name="title_transition_name">TitleTransition</string>
+
     <!-- Progress Loader -->
     <string name="loading_more">Loading More....</string>
     <string name="default_loading_message">Please wait…</string>

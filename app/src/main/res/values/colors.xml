@@ -13,6 +13,12 @@
     <color name="red">#FF0000</color>
     <color name="grey">#9E9D9D</color>
     <color name="transparent">#00ffffff</color>
+    <color name="half_transparent_black">#80000000</color>
+
+    <color name="light_grey">#dddddd</color>
+    <color name="dark_grey">#6D6767</color>
+
+    <color name="blue_shade">#389FF6</color>
 
     <color name="navigation_bar">#33FFFFFF</color>
     <color name="shimmer_placeholders">#dddddd</color>

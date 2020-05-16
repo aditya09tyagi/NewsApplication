@@ -1,6 +1,8 @@
 package com.example.newsapp.ui.home
 
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.data.models.Article
@@ -25,7 +27,7 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.setOnClickListener {
             if (::onNewsClickListener.isInitialized)
-                onNewsClickListener.onNewsClicked(article)
+                onNewsClickListener.onNewsClicked(itemView.ivNewsImage,itemView.tvNewsHeading,article)
         }
     }
 
@@ -34,6 +36,6 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     interface OnNewsClickListener {
-        fun onNewsClicked(article: Article)
+        fun onNewsClicked(newsImageView: ImageView, titleTextView: TextView, article: Article)
     }
 }

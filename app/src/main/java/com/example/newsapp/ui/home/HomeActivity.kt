@@ -2,7 +2,11 @@ package com.example.newsapp.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.util.Pair
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +25,7 @@ import ru.alexbykov.nopaginate.callback.OnLoadMoreListener
 import ru.alexbykov.nopaginate.paginate.NoPaginate
 import javax.inject.Inject
 
+
 class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClickListener {
 
     @Inject
@@ -32,10 +37,11 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var paginate: NoPaginate
     private var isFirstLoad = true
+    private var isListLoaded = true
     private lateinit var layoutManager: LinearLayoutManager
     private var currentPageNo: Int = 1
-    private var currentListSize: Int = 1
-    private var totalSize: Int = 0
+    private var currentListSize: Int = 0
+    private var totalListSize: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +54,8 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
     }
 
     private fun initVariables() {
+        StatusBarUtil.setColorNoTranslucent(this, ContextCompat.getColor(this, R.color.white))
         StatusBarUtil.setLightMode(this)
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.white))
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
     }
 
@@ -74,7 +80,10 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
 
         swipeToRefreshNews.setOnRefreshListener {
             currentPageNo = 1
+            homeAdapter.clearList()
+            isFirstLoad = true
             homeViewModel.getTopHeadlines("", currentPageNo)
+            swipeToRefreshNews.isRefreshing = false
         }
     }
 
@@ -99,25 +108,30 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
                     rvNews.visibility = View.GONE
                     it.data?.let { resp ->
                         val list = resp.articles
-                        totalSize = resp.totalResults
+                        totalListSize = resp.totalResults
                         currentListSize += list.size
                         val previousSize = homeAdapter.getCurrentListSize()
-                        homeAdapter.initNewsList(list)
+                        if (isFirstLoad)
+                            homeAdapter.initNewsList(list)
+                        else
+                            homeAdapter.addNewItems(list)
+                        currentPageNo++
 
                         if (list.isEmpty()) {
                             hasLoadedAllItems()
+                            currentPageNo = 0
                         }
 
                         if (isFirstLoad) {
                             isFirstLoad = false
                             homeAdapter.notifyDataSetChanged()
-                        } else {
+                        } else if (list.isNotEmpty()) {
                             homeAdapter.notifyItemRangeInserted(
                                 previousSize,
                                 homeAdapter.getCurrentListSize() - previousSize
                             )
                         }
-
+                        isListLoaded = true
                         if (homeAdapter.getCurrentListSize() == 0) {
                             rvNews.visibility = View.GONE
                             ivNoNews.visibility = View.VISIBLE
@@ -162,11 +176,35 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
     }
 
     override fun onLoadMore() {
-        if (currentListSize != 0 || currentListSize > totalSize)
-            homeViewModel.getTopHeadlines("", ++currentPageNo)
+        if ((currentListSize != 0 || currentListSize <= totalListSize) && !isFirstLoad && isListLoaded){
+            isListLoaded = false
+            homeViewModel.getTopHeadlines("", currentPageNo)
+        }
     }
 
-    override fun onNewsClicked(article: Article) {
-        startActivity(NewsDetailActivity.newIntent(this, gson.toJson(article)))
+    override fun onNewsClicked(
+        newsImageView: ImageView,
+        titleTextView: TextView,
+        article: Article
+    ) {
+
+        val imagePair =
+            Pair.create<View, String>(newsImageView, getString(R.string.image_transition_name))
+
+        val textViewPair =
+            Pair.create<View, String>(titleTextView, getString(R.string.title_transition_name))
+
+        val activityOptions =
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                imagePair,
+                textViewPair
+            )
+
+        startActivity(
+            NewsDetailActivity.newIntent(this, gson.toJson(article)),
+            activityOptions.toBundle()
+        )
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
     }
 }

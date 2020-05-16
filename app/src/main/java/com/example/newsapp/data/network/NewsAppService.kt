@@ -16,6 +16,7 @@ interface NewsAppService {
         @Query("apiKey") apiKey: String = API_KEY,
         @Query("q") searchQuery: String = "",
         @Query("page") pageNo: Int,
+        @Query("pageSize") pageSize: Int = 15,
         @Query("country") country: String = "us"
     ): Call<NewsResponse>
 }

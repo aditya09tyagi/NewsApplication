@@ -2,51 +2,64 @@ package com.example.newsapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.data.models.Article
 import com.squareup.picasso.Picasso
 
-class HomeAdapter(private val picasso: Picasso): RecyclerView.Adapter<HomeViewHolder>(),
+class HomeAdapter(private val picasso: Picasso) : RecyclerView.Adapter<HomeViewHolder>(),
     HomeViewHolder.OnNewsClickListener {
 
-    private lateinit var newsList: ArrayList<Article>
+    private var newsList: ArrayList<Article> = ArrayList()
     private lateinit var onNewsClickListener: OnNewsClickListener
 
 
-    fun initNewsList(newsList: ArrayList<Article>){
+    fun initNewsList(newsList: ArrayList<Article>) {
         this.newsList = newsList
+        notifyDataSetChanged()
+    }
+
+    fun addNewItems(newsList: ArrayList<Article>){
+        newsList.addAll(newsList)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.cell_news, parent,false)
+        val view = inflater.inflate(R.layout.cell_news, parent, false)
         return HomeViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        if (::newsList.isInitialized)
+        if (newsList.isNotEmpty())
             return newsList.size
         return 0
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        if (::newsList.isInitialized){
-            holder.setNews(newsList[position],picasso)
+        if (newsList.isNotEmpty()) {
+            holder.setNews(newsList[position], picasso)
             holder.setOnNewsClickListener(this)
         }
     }
 
-    fun getCurrentListSize():Int{
-        if (::newsList.isInitialized)
-            return newsList.size
-        return 0
+    fun getCurrentListSize(): Int {
+        return newsList.size
     }
 
-    override fun onNewsClicked(article: Article) {
+    fun clearList(){
+        newsList.clear()
+    }
+
+    override fun onNewsClicked(
+        newsImageView: ImageView,
+        titleTextView: TextView,
+        article: Article
+    ) {
         if (::onNewsClickListener.isInitialized)
-            onNewsClickListener.onNewsClicked(article)
+            onNewsClickListener.onNewsClicked(newsImageView, titleTextView, article)
     }
 
     fun setOnNewsClickListener(onNewsClickListener: OnNewsClickListener) {
@@ -54,6 +67,6 @@ class HomeAdapter(private val picasso: Picasso): RecyclerView.Adapter<HomeViewHo
     }
 
     interface OnNewsClickListener {
-        fun onNewsClicked(article: Article)
+        fun onNewsClicked(newsImageView: ImageView, titleTextView: TextView, article: Article)
     }
 }
