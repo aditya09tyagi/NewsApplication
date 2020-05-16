@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3378E1</color>
+    <color name="colorPrimaryNew">#0E313A</color>
+    <color name="colorPrimaryDark">#124F9E</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+
+    <!-- Basic Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="off_white">#EBEBF1</color>
+    <color name="black">#000000</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#FF0000</color>
+    <color name="grey">#9E9D9D</color>
+    <color name="transparent">#00ffffff</color>
+
+    <color name="navigation_bar">#33FFFFFF</color>
+    <color name="shimmer_placeholders">#dddddd</color>
+
+
+    <!-- Text Colors -->
+    <color name="color_text_primary">@color/black</color>
+    <color name="color_text_secondary">#80000000</color>
+    <color name="color_text_disabled">#66ffffff</color>
+
+    <color name="text_red">#952D2D</color>
+
+    <color name="feedback_positive">#208020</color>
+    <color name="feedback_negative">#C22222</color>
+</resources>

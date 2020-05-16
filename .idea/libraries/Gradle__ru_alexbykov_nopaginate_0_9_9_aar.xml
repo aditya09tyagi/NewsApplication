@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: ru.alexbykov:nopaginate:0.9.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d2a6ffff211c3414b13d1f1616e52b29/jetified-nopaginate-0.9.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d2a6ffff211c3414b13d1f1616e52b29/jetified-nopaginate-0.9.9/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ru.alexbykov/nopaginate/0.9.9/611a9e8980efa71dd78511de901d6946b4a09805/nopaginate-0.9.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/ru.alexbykov/nopaginate/0.9.9/fb26b1ea1d677938f2975a5f7d33a8c387619c70/nopaginate-0.9.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

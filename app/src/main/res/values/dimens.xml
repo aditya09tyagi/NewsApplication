@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- font size -->
+    <dimen name="font_extra_large">24sp</dimen>
+    <dimen name="font_larger">22sp</dimen>
+    <dimen name="font_large">20sp</dimen>
+    <dimen name="font_medium_large">18sp</dimen>
+    <dimen name="font_normal">16sp</dimen>
+    <dimen name="font_medium_small">14sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+
+    <dimen name="font_50_sp">50sp</dimen>
+    <dimen name="font_40_sp">40sp</dimen>
+    <dimen name="font_34_sp">34sp</dimen>
+    <dimen name="font_30_sp">30sp</dimen>
+    <dimen name="font_28_sp">28sp</dimen>
+    <dimen name="font_26_sp">26sp</dimen>
+    <dimen name="font_24_sp">24sp</dimen>
+    <dimen name="font_22_sp">22sp</dimen>
+    <dimen name="font_20_sp">20sp</dimen>
+    <dimen name="font_18_sp">18sp</dimen>
+    <dimen name="font_16_sp">16sp</dimen>
+    <dimen name="font_14_sp">14sp</dimen>
+    <dimen name="font_12_sp">12sp</dimen>
+    <dimen name="font_10_sp">10sp</dimen>
+
+    <!-- padding -->
+    <dimen name="padding_huger">40dp</dimen>
+    <dimen name="padding_huge">36dp</dimen>
+    <dimen name="padding_large">30dp</dimen>
+    <dimen name="padding_big">24dp</dimen>
+    <dimen name="padding_normal_large">18dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_normal_small">14dp</dimen>
+    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_micro">4dp</dimen>
+    <dimen name="padding_nano">2dp</dimen>
+
+    <dimen name="padding_100_dp">100dp</dimen>
+    <dimen name="padding_90_dp">90dp</dimen>
+    <dimen name="padding_80_dp">80dp</dimen>
+    <dimen name="padding_70_dp">70dp</dimen>
+    <dimen name="padding_60_dp">60dp</dimen>
+    <dimen name="padding_50_dp">50dp</dimen>
+    <dimen name="padding_48_dp">48dp</dimen>
+    <dimen name="padding_44_dp">44dp</dimen>
+    <dimen name="padding_40_dp">40dp</dimen>
+    <dimen name="padding_36_dp">36dp</dimen>
+    <dimen name="padding_30_dp">30dp</dimen>
+    <dimen name="padding_26_dp">26dp</dimen>
+    <dimen name="padding_24_dp">24dp</dimen>
+    <dimen name="padding_22_dp">22dp</dimen>
+    <dimen name="padding_20_dp">20dp</dimen>
+    <dimen name="padding_18_dp">18dp</dimen>
+    <dimen name="padding_16_dp">16dp</dimen>
+    <dimen name="padding_14_dp">14dp</dimen>
+    <dimen name="padding_12_dp">12dp</dimen>
+    <dimen name="padding_10_dp">10dp</dimen>
+    <dimen name="padding_8_dp">8dp</dimen>
+    <dimen name="padding_6_dp">6dp</dimen>
+    <dimen name="padding_4_dp">4dp</dimen>
+    <dimen name="padding_2_dp">2dp</dimen>
+    <dimen name="padding_1_dp">1dp</dimen>
+
+    <!-- placeholders -->
+    <dimen name="placeholderImage">80dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+
+    <!-- bottom sheet -->
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="bottom_sheet_top_padding">8dp</dimen>
+
+    <!-- rounded corner -->
+    <dimen name="rounded_corner_radius">26dp</dimen>
+    <dimen name="rounded_grey_bg">5dp</dimen>
+
+</resources>

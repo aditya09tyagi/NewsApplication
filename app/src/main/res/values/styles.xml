@@ -1,0 +1,78 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowDisablePreview">true</item>
+
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/font_20_sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SwipeBackActivity" parent="AppTheme.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+    </style>
+
+<!--    <style name="AppTheme.Launcher" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+<!--        <item name="android:windowBackground">@drawable/launch_screen_old</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryNew</item>-->
+<!--    </style>-->
+
+<!--    <style name="AppTheme.NewLauncher" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+<!--        <item name="android:windowBackground">@drawable/launch_screen_new</item>-->
+<!--        <item name="colorPrimaryDark">@color/white</item>-->
+<!--    </style>-->
+
+    <!-- Text -->
+    <style name="Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_16_sp</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
+    </style>
+
+    <style name="Text.Primary">
+        <item name="android:textColor">@color/color_text_primary</item><!-- Custom Attr-->
+        <item name="fontPath">fonts/Lato.ttf</item>
+    </style>
+
+    <style name="Text.Secondary">
+        <item name="android:textColor">@color/color_text_secondary</item>
+        <item name="fontPath">fonts/Lato.ttf</item>
+    </style>
+
+    <style name="Text.Primary.Bold">
+        <item name="android:textStyle">bold</item>
+        <item name="fontPath">fonts/Lato-Medium.ttf</item>
+    </style>
+
+    <!-- PHOTO VIEW LAYOUT -->
+    <style name="ImageViewerDialog" parent="android:Theme.Translucent.NoTitleBar"/>
+
+    <style name="ImageViewerDialog.NoStatusBar" parent="android:Theme.Translucent.NoTitleBar.Fullscreen"/>
+
+    <style name="ImageViewerDialog.Default" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+</resources>
