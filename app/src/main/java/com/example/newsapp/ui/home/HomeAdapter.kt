@@ -15,15 +15,8 @@ class HomeAdapter(private val picasso: Picasso) : RecyclerView.Adapter<HomeViewH
     private var newsList: ArrayList<Article> = ArrayList()
     private lateinit var onNewsClickListener: OnNewsClickListener
 
-
-    fun initNewsList(newsList: ArrayList<Article>) {
-        this.newsList = newsList
-        notifyDataSetChanged()
-    }
-
-    fun addNewItems(newsList: ArrayList<Article>){
-        newsList.addAll(newsList)
-        notifyDataSetChanged()
+    fun addNewItems(newsList: ArrayList<Article>) {
+        this.newsList.addAll(newsList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -49,7 +42,7 @@ class HomeAdapter(private val picasso: Picasso) : RecyclerView.Adapter<HomeViewH
         return newsList.size
     }
 
-    fun clearList(){
+    fun clearList() {
         newsList.clear()
     }
 

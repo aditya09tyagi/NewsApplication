@@ -37,12 +37,7 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var paginate: NoPaginate
     private var isFirstLoad = true
-    private var isListLoaded = true
     private lateinit var layoutManager: LinearLayoutManager
-    private var currentPageNo: Int = 1
-    private var currentListSize: Int = 0
-    private var totalListSize: Int = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,21 +63,21 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
         paginate = NoPaginate.with(rvNews)
             .setLoadingTriggerThreshold(1)
             .setOnLoadMoreListener(this)
-            .setCustomErrorItem(CustomErrorListItemCreator(false))
-            .setCustomLoadingItem(CustomLoadingListItemCreator(false))
+            .setCustomErrorItem(CustomErrorListItemCreator(true))
+            .setCustomLoadingItem(CustomLoadingListItemCreator(true))
             .build()
-
-        homeViewModel.getTopHeadlines("", currentPageNo)
     }
 
     private fun setListener() {
         homeAdapter.setOnNewsClickListener(this)
 
         swipeToRefreshNews.setOnRefreshListener {
-            currentPageNo = 1
             homeAdapter.clearList()
+            homeViewModel.refresh()
+            homeAdapter.notifyDataSetChanged()
+            paginate.setNoMoreItems(false)
             isFirstLoad = true
-            homeViewModel.getTopHeadlines("", currentPageNo)
+            homeViewModel.getTopHeadlines("", null)
             swipeToRefreshNews.isRefreshing = false
         }
     }
@@ -108,18 +103,11 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
                     rvNews.visibility = View.GONE
                     it.data?.let { resp ->
                         val list = resp.articles
-                        totalListSize = resp.totalResults
-                        currentListSize += list.size
                         val previousSize = homeAdapter.getCurrentListSize()
-                        if (isFirstLoad)
-                            homeAdapter.initNewsList(list)
-                        else
-                            homeAdapter.addNewItems(list)
-                        currentPageNo++
+                        homeAdapter.addNewItems(list)
 
                         if (list.isEmpty()) {
                             hasLoadedAllItems()
-                            currentPageNo = 0
                         }
 
                         if (isFirstLoad) {
@@ -131,7 +119,7 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
                                 homeAdapter.getCurrentListSize() - previousSize
                             )
                         }
-                        isListLoaded = true
+
                         if (homeAdapter.getCurrentListSize() == 0) {
                             rvNews.visibility = View.GONE
                             ivNoNews.visibility = View.VISIBLE
@@ -146,7 +134,6 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
                     updateLoadingState(false)
                     shimmerViewContainer.visibility = View.GONE
                     ivNoNews.visibility = View.VISIBLE
-                    rvNews.visibility = View.GONE
                     it.message?.let { errorMsg ->
                         showErrorToast(errorMsg)
                     }
@@ -176,10 +163,7 @@ class HomeActivity : BaseActivity(), OnLoadMoreListener, HomeAdapter.OnNewsClick
     }
 
     override fun onLoadMore() {
-        if ((currentListSize != 0 || currentListSize <= totalListSize) && !isFirstLoad && isListLoaded){
-            isListLoaded = false
-            homeViewModel.getTopHeadlines("", currentPageNo)
-        }
+        homeViewModel.getTopHeadlines("", null)
     }
 
     override fun onNewsClicked(

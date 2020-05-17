@@ -12,9 +12,6 @@ import com.example.newsapp.ui.gestures.OnSwipeTouchListener
 import com.example.newsapp.ui.news_detail.detail_web_view.NewsDetailWebViewActivity
 import com.example.newsapp.ui.widget.photo_view_layout.StfalconImageViewer
 import com.jaeger.library.StatusBarUtil
-import com.r0adkll.slidr.Slidr
-import com.r0adkll.slidr.model.SlidrConfig
-import com.r0adkll.slidr.model.SlidrPosition
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_news_details.*
 import javax.inject.Inject
@@ -62,7 +59,9 @@ class NewsDetailActivity : BaseActivity() {
 
             tvTitle.text = article.title
 
-            tvDescription.text = article.content
+            tvDescription.text = article.description
+
+            tvContent.text = article.content
 
             tvSource.text = article.source.name
 

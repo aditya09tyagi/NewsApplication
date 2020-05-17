@@ -9,6 +9,8 @@ import com.example.newsapp.data.models.Article
 import com.example.newsapp.util.DateTimeUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cell_news.view.*
+import org.threeten.bp.format.TextStyle
+import java.util.*
 
 class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -16,7 +18,7 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun setNews(article: Article, picasso: Picasso) {
         itemView.tvNewsTime.text =
-            DateTimeUtils.getDateInTimeOnlyFormatFromUtcDateTime(article.publishedAt)
+            getDateFromString(article.publishedAt)
         itemView.tvNewsHeading.text = article.title
         picasso.load(article.urlToImage)
             .error(R.drawable.placeholder_no_internet)
@@ -37,5 +39,16 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     interface OnNewsClickListener {
         fun onNewsClicked(newsImageView: ImageView, titleTextView: TextView, article: Article)
+    }
+
+    private fun getDateFromString(startDate: String): String {
+        val date = DateTimeUtils.getLocalDateFromString(startDate)
+        val time = DateTimeUtils.getDateInTimeOnlyFormatFromUtcDateTime(startDate)
+        return String.format(
+            itemView.context.getString(R.string.class_date_format),
+            time,
+            date.dayOfMonth,
+            date.month.getDisplayName(TextStyle.SHORT, Locale.UK)
+        )
     }
 }

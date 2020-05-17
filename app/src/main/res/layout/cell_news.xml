@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="@dimen/padding_micro">
+    app:cardCornerRadius="@dimen/padding_micro"
+    app:cardElevation="@dimen/padding_small">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="@dimen/padding_small"
         android:padding="@dimen/padding_small">
 
         <TextView
@@ -28,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_small"
-            android:textSize="@dimen/font_large"
+            android:textSize="@dimen/font_larger"
             android:transitionName="@string/title_transition_name"
             app:layout_constraintEnd_toStartOf="@id/ivNewsImage"
             app:layout_constraintStart_toStartOf="parent"

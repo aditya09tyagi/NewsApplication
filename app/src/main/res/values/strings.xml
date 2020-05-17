@@ -12,6 +12,7 @@
 
     <string name="swipe_left_for_more">Swipe left to know more about this story-->></string>
     <string name="some_error_occurred">Some Error Occurred</string>
+    <string name="class_date_format" >%s, %s %s</string>
 
     <!-- Transition Names -->
     <string name="image_transition_name">ImageTransition</string>

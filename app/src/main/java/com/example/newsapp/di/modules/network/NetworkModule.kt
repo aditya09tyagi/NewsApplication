@@ -27,6 +27,7 @@ class NetworkModule {
         private const val MAX_AGE: Int = 0
         private const val CACHE_SIZE: Long = 10 * 1000 * 1000 //10 MB CACHE
         private const val CACHE_CONTROL = "Cache-Control"
+        private const val PRAGMA = "Pragma"
     }
 
     @Provides
@@ -137,7 +138,15 @@ class NetworkModule {
             request = request.newBuilder()
                     .header(CACHE_CONTROL, cacheControl.toString())
                     .build()
-            return@Interceptor chain.proceed(request)
+
+            var response = chain.proceed(request)
+            response = response.newBuilder()
+                .removeHeader(PRAGMA)
+                .removeHeader(CACHE_CONTROL)
+                .header(CACHE_CONTROL,cacheControl.toString())
+                .build()
+
+            return@Interceptor response
         }
     }
 

@@ -9,9 +9,10 @@ class NewsAppRepository(private val newsAppService: NewsAppService) {
     fun getTopHeadlines(
         query: String,
         pageNo: Int,
+        sourceName: String?,
         onGetTopHeadlinesListener: OnGetTopHeadlinesListener
     ) {
-        newsAppService.getTopHeadlines(searchQuery = query,pageNo = pageNo)
+        newsAppService.getTopHeadlines(searchQuery = query, pageNo = pageNo,sourceName = sourceName)
             .enqueue(object : ApiCallback<NewsResponse>() {
                 override fun success(response: NewsResponse) {
                     onGetTopHeadlinesListener.onGetTopHeadlinesSuccess(response)

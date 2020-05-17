@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_small"
-        android:textSize="@dimen/font_large"
+        android:textSize="@dimen/font_larger"
         android:transitionName="@string/title_transition_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,13 +38,26 @@
     <TextView
         android:id="@+id/tvDescription"
         style="@style/Text.Primary"
+        android:textStyle="italic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/font_large"
         android:padding="@dimen/padding_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         tools:text="January 26 marked a dark day in the world of basketball. Nobody can forget the tragic demise of the Los Angles Lakers legend, Kobe Bryant. For the millions of his fans, it is still extremely hard to believe that he is no more. The mamba, who was traveling wit… [+1971 chars]" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        style="@style/Text.Primary"
+        android:textSize="@dimen/font_medium_large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"/>
 
     <TextView
         android:id="@+id/tvSwipeLeftForMore"
@@ -55,7 +68,7 @@
         android:text="@string/swipe_left_for_more"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+        app:layout_constraintTop_toBottomOf="@id/tvContent" />
 
     <TextView
         android:id="@+id/tvSource"
@@ -78,4 +91,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Written By Arjun Athreya" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

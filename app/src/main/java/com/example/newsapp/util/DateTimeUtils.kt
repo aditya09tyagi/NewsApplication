@@ -10,21 +10,6 @@ class DateTimeUtils {
         private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
         private val formatter12HourOnlyTime: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)
 
-        fun getTimeMilliSeconds(date: String): Long {
-            val tz = TimeZone.getDefault()
-            val cal = GregorianCalendar.getInstance(tz)
-            val offsetInMillis = tz.getOffset(cal.timeInMillis)
-
-            val otherString = LocalDateTime.parse(date, formatter)
-                    .atOffset(ZoneOffset.UTC)
-                    .atZoneSameInstant(ZoneId.systemDefault())
-                    .format(formatter)
-
-            return Duration.ofMillis(
-                    ZonedDateTime.parse(otherString).toInstant().toEpochMilli().minus(offsetInMillis)
-            ).toMillis()
-        }
-
         fun getLocalDateFromString(date: String): ZonedDateTime {
             val localString = LocalDateTime.parse(date, formatter)
                     .atOffset(ZoneOffset.UTC)

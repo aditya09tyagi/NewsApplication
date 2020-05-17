@@ -17,13 +17,20 @@ class HomeViewModel @Inject constructor(
     val newsLiveData: LiveData<Resource<NewsResponse>>
         get() = _newsLiveData
 
-    fun getTopHeadlines(query: String, pageNo: Int) {
+    private var pageNumber = 1
+
+    fun getTopHeadlines(query: String, sourceName: String?) {
         _newsLiveData.postValue(Resource.loading())
-        newsAppRepository.getTopHeadlines(query, pageNo, this)
+        newsAppRepository.getTopHeadlines(query, pageNumber, sourceName = sourceName,onGetTopHeadlinesListener = this)
+    }
+
+    fun refresh() {
+        pageNumber = 1
     }
 
     override fun onGetTopHeadlinesSuccess(newsResponse: NewsResponse) {
         _newsLiveData.postValue(Resource.success(newsResponse))
+        pageNumber++
     }
 
     override fun onGetTopHeadlinesFailure(error: Error) {
